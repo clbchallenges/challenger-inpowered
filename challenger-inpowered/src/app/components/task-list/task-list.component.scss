@@ -1,0 +1,33 @@
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+h2 {
+  align-content: center;
+}
+ 
+
+.button {
+  margin-left: 30px;
+}
+
+.filter-container {
+  margin-top: 30px;
+}
+
+.task-container {
+  margin: 40px 20px
+}

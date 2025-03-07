@@ -1,0 +1,64 @@
+<div class="task-container">
+  <h2>Task List</h2>
+
+  <div class="add-task-accordion">
+    <mat-accordion>
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title> Add Task Area </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field appearance="outline">
+          <mat-label>Name Task</mat-label>
+          <input [(ngModel)]="newTask" matInput />
+        </mat-form-field>
+        <button
+          class="button"
+          mat-raised-button
+          color="primary"
+          [disabled]="newTask.length === 0"
+          (click)="addTask()"
+        >
+          Add Task
+        </button>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div class="filter-container">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <mat-select [(ngModel)]="filter" (selectionChange)="changeFilter(filter)">
+        <mat-option value="all">All</mat-option>
+        <mat-option value="completed">Completed</mat-option>
+        <mat-option value="incomplete">Incomplete</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <ul> 
+    <li
+      *ngFor="let task of filteredTasks$ | async"
+      [ngStyle]="{
+        'background-color': task.completed ? 'lightgreen' : 'transparent'
+      }"
+    >
+      <mat-checkbox
+        [(ngModel)]="task.completed"
+        (change)="toggleTaskCompletion(task)"
+      >
+        <span
+          [ngStyle]="{
+            'text-decoration': task.completed ? 'line-through' : 'none'
+          }"
+        >
+          {{ task.name }}
+        </span>
+      </mat-checkbox>
+
+      <button mat-button color="warn" (click)="deleteTask(task.id)">
+        Delete
+      </button>
+    </li>
+  </ul>
+</div>
