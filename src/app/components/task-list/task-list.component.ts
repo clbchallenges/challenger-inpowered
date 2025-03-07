@@ -23,7 +23,6 @@ export class TaskListComponent implements OnInit {
     if (savedTasks) {
       this.tasks = JSON.parse(savedTasks);
     }
-    console.log(this.tasks)
     this.updateFilteredTasks();
   }
 
